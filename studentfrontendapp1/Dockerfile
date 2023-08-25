@@ -10,6 +10,7 @@ WORKDIR /app
 RUN pwd
 RUN ls -l /app/studentfrontendapp1
 RUN cp -r /app/studentfrontendapp1/package*.json /app/
+RUN cp -r /app/studentfrontendapp1/public /app/
 RUN npm install
 RUN npm run build
 EXPOSE $PORT
