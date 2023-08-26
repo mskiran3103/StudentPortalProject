@@ -12,6 +12,8 @@ RUN ls -l /app/studentfrontendapp1
 RUN cp -r /app/studentfrontendapp1/package*.json /app/
 RUN cp -r /app/studentfrontendapp1/public /app/
 RUN npm install
+RUN ls -l /app
+RUN ls -l /app/public
 RUN npm run build
 EXPOSE $PORT
 ENV NUXT_HOST=0.0.0.0
