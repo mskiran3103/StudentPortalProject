@@ -8,6 +8,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import AddUser from "./Components/AddUser.js";
 import GetUser from "./Components/GetUser.js";
+import Appbar from "./Components/Appbar.js";
 
 function App() {
     const paperStyle = { padding: '50px 20px', width: 600, margin: "20px auto" };

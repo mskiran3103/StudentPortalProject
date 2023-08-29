@@ -3,6 +3,8 @@ package com.example.studentPortal.Controller;
 import com.example.studentPortal.Service.studentService;
 import com.example.studentPortal.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,21 +14,26 @@ import java.util.List;
 @CrossOrigin
 public class studentController {
 
-    //Control Http methods like GET,POST,etc..
     @Autowired
     private studentService studentservice;
 
-
     @PostMapping("/add")
-    public String add(@RequestBody Student student)
-    {
-        studentservice.saveStudent(student);
-        return "New Student is added";
+    public ResponseEntity<String> add(@RequestBody Student student) {
+        try {
+            studentservice.saveStudent(student);
+            return ResponseEntity.status(HttpStatus.CREATED).body("New Student is added");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to add student");
+        }
     }
 
     @GetMapping("/getAll")
-    public List<Student> getAllStudents()
-    {
-        return studentservice.getAllStudents();
+    public ResponseEntity<List<Student>> getAllStudents() {
+        try {
+            List<Student> studentList = studentservice.getAllStudents();
+            return ResponseEntity.ok(studentList);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 }

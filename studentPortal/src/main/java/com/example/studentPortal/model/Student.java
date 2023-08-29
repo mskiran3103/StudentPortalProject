@@ -11,7 +11,7 @@ public class Student {
 
     //Model folder is used to create setter and getters for entities
     @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY) //This makes ID as auto increment
+   //@GeneratedValue(strategy = GenerationType.IDENTITY) //This makes ID as auto increment
     private int id;
     private String name;
     private String address;
