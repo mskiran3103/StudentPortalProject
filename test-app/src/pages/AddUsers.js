@@ -41,6 +41,11 @@ function UserDetailsForm() {
             }
         } catch (error) {
             toast.error('Error sending user data: ' + error.message);
+            
+            // Display specific error message for server connection issues
+            if (error.message.includes('Failed to fetch')) {
+                toast.error('Server is not connected.');
+            }
         }
     };
 
@@ -49,7 +54,7 @@ function UserDetailsForm() {
             <h2>Enter User Details</h2>
             <ToastContainer />
             <form onSubmit={handleSubmit}>
-                <div className="form-group">
+            <div className="form-group">
                     <label>User ID:</label>
                     <input type="text" value={userId} onChange={(e) => setUserId(e.target.value)} />
                     {!userId && <span className="error-message">Please enter User ID</span>}
